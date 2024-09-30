@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <section class="card card-body">
+
+        <h1 class="display-1 text-center">Inicio</h1>
+        <div class="d-flex flex-column align-items-center text-center">
+
+            <p>Bienvenido a la aplicación de tareas.</p>
+            {% if not user.is_authenticated %}
+                <p>Para ver las tareas completadas, <a href="{% url 'inicio_sesion' %}">inicia sesión.</a></p>
+                <p>Si no tienes una cuenta, puedes registrarte <a href="{% url 'registro' %}">aquí.</a></p>
+            {% endif %}
+        </div>
+    </section>
+</div>
+{% endblock %}

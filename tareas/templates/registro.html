@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="height: 80vh;">
+    <section class="card card-body py-0">
+
+        <h1 class="display-1 text-center">Registrarse</h1>
+        <p>{{ error }}</p>
+
+        <div class="d-flex justify-content-center">
+            <form action="/registro/" method="POST">
+                {% csrf_token %}
+                <!--{{ form.as_p }} -->
+                <div class="mb-3">
+                    <label for="username">Usuario:</label>
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Escribe tu usuario...">
+                </div>
+
+                <div class="mb-3">
+                    <label for="password1">Contraseña:</label>
+                    <input type="password" name="password1" id="password1" class="form-control" placeholder="Escribe tu contraseña...">
+                    <div id="passwordHelpBlock" class="form-text">
+                        Tu contraseña no debe estar vacía.
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password2">Confirma tu contraseña:</label>
+                    <input type="password" name="password2" id="password2" class="form-control" placeholder="Escribe tu contraseña...">
+                    <div id="passwordHelperBlock" class="form-text">
+                        Repite tu contraseña.
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-primary">Registrarse</button>
+                </div>
+
+            </form>
+        </div>
+
+        <p>¿Ya tienes una cuenta? <a href="/inicio_sesion/">Inicia sesión</a></p>
+    </section>
+</div>
+{% endblock %}

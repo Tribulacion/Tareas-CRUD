@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<main class="conntainer">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="container py-3">
+    <section>
+        <h1 class="display-1 text-center py-5">Lista de tareas</h1>
+
+        <div class="d-flex justify-content-center align-items-center">
+            <ul class="list-group">
+                {% for tarea in tareas %}
+                <a class="list-group-item" href="{% url 'detalles_tarea' tarea.id %}">
+                    <header class="d-flex justify-content-between">
+                        {% if tarea.importante %}
+                            <h1 class="fw-bold text-success">{{tarea.titulo}}</h1>
+                        {% else %}
+                            <h1 class="fw-bold">{{tarea.titulo}}</h1>
+                        {% endif %}
+                        <p>{{tarea.usuario}}</p>
+                    </header>
+                    <p>
+                        {{tarea.descripcion}}
+                    </p>
+
+
+                    <p>
+                        {{tarea.fecha_completa|date:'j/M/Y - H:i:s'}}
+                    </p>
+
+                </a>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </section>
+</div>
+        </div>
+
+    </div>
+</main>
+
+{% endblock %}

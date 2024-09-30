@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="display-1 text-center">{{ tarea.titulo }}</h1>
+
+            {{ error }}
+            <form method="POST" action="{% url 'detalles_tarea' tarea.id %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-primary mx-2" type="submit">Guardar</button>
+                </div>
+            </form>
+
+            <div class="d-flex justify-content-center mt-3">
+                {% if not tarea.fecha_completa %}
+                    <form method="POST" action="{% url 'completar_tarea' tarea.id %}" class="d-inline mx-2">
+                        {% csrf_token %}
+                        <button class="btn btn-warning">Completar</button>
+                    </form>
+                {% endif %}
+
+                <form method="POST" action="{% url 'eliminar_tarea' tarea.id %}" class="d-inline mx-2">
+                    {% csrf_token %}
+                    <button class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
